@@ -1,0 +1,56 @@
+/* Images */
+
+.reveal section img.logo {
+	border: none;
+	margin: 0 0;
+	background: none;
+}
+
+.reveal section img.inline {
+	border: none;
+	margin: 0 0;
+	background: none;
+	height: 1.5em;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reveal section img.inline.filewave {
+	vertical-align: bottom;
+}
+
+/* Specific parahraph styles */
+
+.reveal section h1 {
+	margin-bottom: 0.5em;
+}
+
+.reveal section h1:first-letter {
+	color: #e7ad52;
+}
+
+.reveal section .discrete {
+	font-size: 60%;
+}
+
+/* Definition lists */
+
+.reveal section dl dt {
+	color: #e7ad52;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+.reveal section dl dd {
+	margin-bottom: 1em;
+}
+
+/* Tweaks */
+
+.reveal section li > ul {
+	margin-bottom: 1em;
+}
+
+.reveal section q {
+	quotes: inherit;
+}

@@ -32,6 +32,8 @@
 		<!--[if lt IE 9]>
 		<script src="{{ url_for('static', filename='lib/js/html5shiv.js') }}"></script>
 		<![endif]-->
+
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 	</head>
 
 	<body>
@@ -41,11 +43,120 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
+					<h1><img class="logo" src="{{ url_for('static', filename='images/freelan.png') }}" alt="freelan logo" /></h1>
+					<p class="discrete">Présentation par <strong>Julien Kauffmann</strong> / <a href="https://twitter.com/julienkauffmann"><img class="inline" src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter logo" /> @julienkauffmann</a></p>
+
+					<aside class="notes">
+						<p>Bonsoir à tous</p>
+						<p>Ce soir on va parler de réseaux, de cryptographie, de sécurité informatique. En un mot, on va parler de <strong>réseaux VPN</strong>.</p>
+						<p>Avant de passer au coeur du sujet, je vais prendre quelques instants pour me présenter.</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Qui suis-je ?</h1>
+					<p><strong>Julien Kauffmann</strong> - 28 ans</p>
+					<p>Développeur chez <a href="http://www.filewave.com"><img class="inline filewave" src="{{ url_for('static', filename='images/filewave.png') }}" alt="FileWave" /></a></p>
+					<p>Passionné par la sécurité informatique et les réseaux.</p>
+					<p class="discrete"><a href="http://twitter.com/julienkauffmann"><img class="inline" src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter logo" /> @julienkauffmann</a> / <a href="http://www.github.com/ereOn"><img class="inline" src="{{ url_for('static', filename='images/github.png') }}" alt="Github logo" /> ereOn</a></p>
+
+					<aside class="notes">
+						<p>Je m'appelle Julien Kauffmann. J'ai 28 ans.</p>
+						<p>Je suis développeur chez FileWave, en Suisse. Je travaille sur un logiciel de gestion de périphériques mobiles.</p>
+						<p>J'ai fait mes études à Strasbourg, en tant qu'Ingénieur Système et Réseaux.</p>
+						<p>Je suis passionné de sécurité informatique et de réseaux.</p>
+						<p>Je ne suis pas un professionel de la sécurité informatique, mais c'est un domaine qui m'intéresse beaucoup et dans lequel j'essaye de rester à jour.</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Plan de la soirée</h1>
+					<ol>
+						<li>Les réseaux <q>VPN</q>
+							<ul>
+								<li>Définitions</li>
+								<li>Exemples</li>
+								<li>Aspects réseaux</li>
+								<li>Aspects de sécurité</li>
+							</ul>
+						</li>
+						<li>Présentation de <strong>freelan</strong>
+							<ul>
+								<li>Origines &amp; motivations</li>
+								<li>Concurrence</li>
+								<li>Avantages d'un logiciel libre</li>
+								<li>Le protocole FSCP</li>
+								<li>Démonstration</li>
+							</ul>
+						</li>
+					</ol>
+
+					<aside class="notes">
+						<p>Présentation du plan</p>
+						<p>N'hésitez pas à m'interrompre si vous avez des remarques ou des questions.</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Les réseaux VPN</h1>
+
+					<aside class="notes">
+						<p>Avant de commencer, je vais me permettre de faire un petit sondage:</p>
+						<p><strong>Est-ce qu'il y a des gens ici qui ont très peu voire aucune expérience en réseaux VPN, voire en réseaux tout court ?</strong></p>
+						<p><strong>Est-ce qu'au contraire il y a des gens ici qui ont déjà installé un VPN, ou qui sont carrément experts en sécurité ?</strong></p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Définitions</h1>
+					<dl>
+						<dt class="fragment">VPN</dt>
+						<dd class="fragment">De l'anglais <q>Virtual Private Network</q> (<q>Réseau Privé Virtuel</q>).</dd>
+						<dt class="fragment">Réseau</dt>
+						<dd class="fragment"><q>Ensemble d'élements de même nature reliés les uns aux autres.</q></dd>
+						<dt class="fragment">Privé</dt>
+						<dd class="fragment"><q>Qui n'est pas ouvert au public.</q></dd>
+						<dt class="fragment">Virtuel</dt>
+						<dd class="fragment"><q>Désigne des éléments de simulation tridimensionnels.</q> <strong>(WTF ?!)</strong></dd>
+					</dl>
+
+					<aside class="notes">
+						<p>La définition officielle de "Réseau" n'est pas forcément très claire: on peut aussi définir un réseau comme étant un <strong>ensemble d'ordinateurs reliés qui peuvent échanger des informations</strong>.</p>
+						<p>Pour "Privé", cela signifie grosso-modo qu'<strong>un nombre restreint et connu d'ordinateurs font partie du réseau</strong>.</p>
+						<p>En ce qui concerne "Virtuel", la définition officielle est... amusante. Dans notre cas, "Virtuel" désigne plutôt <strong>un réseau "logiciel" qui n'a pas de réalité physique (par opposition à un réseau fait de câbles, ou de Wifi)</strong>.</p>
+						<p>Un VPN est donc un moyen de connecter plusieurs ordinateurs de façon sécurisée, de façon logicielle, au travers d'un autre réseau physique.</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Exemples</h1>
+
+					<aside class="notes">
+						<p>Les définitions, c'est bien beau, mais quelques exemples ça fait pas de mal.</p>
+						<p>Un réseau VPN ça peut être utilisé pour pas mal de choses. Tous les logiciels ne permettent pas de tout faire: certains sont spécialisés en anonymisation pour d'autres services, d'autres permettent de lier des réseaux entre eux, etc.</p>
+						<p>Ce soir, on va distinguer trois grands cas typiques d'utilisation des réseaux VPN, que vous avez probablement déjà rencontrés.</p>
+					</aside>
+				</section>
+
+				<section data-background="{{ url_for('static', filename='images/anonymous.png') }}" data-background-size="500px">
+					<h1>Les VPN anonymisants</h1>
+					<p>Le but: <strong>masquer son adresse IP publique sur l'Internet</strong>.</p>
+
+					<aside class="notes">
+						<p>Schéma VPN le plus populaire, en particulier avec les lois comme HADOPI ou à cause des gouvernements répressifs (Chine, etc.).</p>
+						<p>Souvent considéré à tort comme la seule définition pour le terme "VPN".</p>
+					</aside>
+				</section>
+
+				<section data-background="{{ url_for('static', filename='images/anonymous.png') }}" data-background-size="500px">
+					<img src="{{ url_for('static', filename='images/anonymous-vpn.png') }}" alt="Anonymous VPN schematics" />
+
+					<aside class="notes">
+						<p>Prenons pour commencer le cas classique: nous avons ici une personne, que l'on nommera au hasard "Jérôme", qui possède une connexion à l'Internet tout à fait classique: un ordinateur portable, un routeur Wifi.</p>
+						<p>Jérôme est un peu paranoïaque, et ne souhaite pas que le gouvernement, ou même ses amis sachent ce à quoi il passe ses soirées sur l'Internet.</p>
+						<p>Il se connecte donc de façon sécurisée à un serveur VPN anonymisant, qui va à son tour se connecter au serveur Web. Si l'administrateur du serveur Web décide de regarder de plus près d'où vient la connexion, il ne verra que l'adresse IP du serveur VPN, et pas celle de Jérôme.</p>
+						<p>Le serveur VPN peut se trouver à l'étranger ou en dehors d'une zone "surveillée" (Chine par exemple).</p>
+					</aside>
 				</section>
 			</div>
 
