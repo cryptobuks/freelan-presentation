@@ -135,28 +135,195 @@
 						<p>Les définitions, c'est bien beau, mais quelques exemples ça fait pas de mal.</p>
 						<p>Un réseau VPN ça peut être utilisé pour pas mal de choses. Tous les logiciels ne permettent pas de tout faire: certains sont spécialisés en anonymisation pour d'autres services, d'autres permettent de lier des réseaux entre eux, etc.</p>
 						<p>Ce soir, on va distinguer trois grands cas typiques d'utilisation des réseaux VPN, que vous avez probablement déjà rencontrés.</p>
+						<p>Pour chaque exemple, nous verrons ses points forts et ses faiblesses.</p>
 					</aside>
 				</section>
 
 				<section data-background="{{ url_for('static', filename='images/anonymous.png') }}" data-background-size="500px">
-					<h1>Les VPN anonymisants</h1>
-					<p>Le but: <strong>masquer son adresse IP publique sur l'Internet</strong>.</p>
+					<section data-background="{{ url_for('static', filename='images/anonymous.png') }}" data-background-size="500px">
+						<h1>Les VPN anonymisants</h1>
+						<p>Le but: <strong>masquer son adresse IP publique sur l'Internet</strong>.</p>
 
-					<aside class="notes">
-						<p>Schéma VPN le plus populaire, en particulier avec les lois comme HADOPI ou à cause des gouvernements répressifs (Chine, etc.).</p>
-						<p>Souvent considéré à tort comme la seule définition pour le terme "VPN".</p>
-					</aside>
+						<aside class="notes">
+							<p>Schéma VPN le plus populaire, en particulier avec les lois comme HADOPI ou à cause des gouvernements répressifs (Chine, etc.).</p>
+							<p>Souvent considéré à tort comme la seule définition pour le terme "VPN".</p>
+						</aside>
+					</section>
+
+					<section data-background="{{ url_for('static', filename='images/anonymous.png') }}" data-background-size="500px">
+						<img src="{{ url_for('static', filename='images/anonymous-vpn.png') }}" alt="Anonymous VPN schematics" />
+
+						<aside class="notes">
+							<p>Prenons pour commencer le cas classique: nous avons ici une personne, que l'on nommera au hasard "Jérôme", qui possède une connexion à l'Internet tout à fait classique: un ordinateur portable, un routeur Wifi.</p>
+							<p>Jérôme est un peu paranoïaque, et ne souhaite pas que le gouvernement, ou même ses amis sachent ce à quoi il passe ses soirées sur l'Internet.</p>
+							<p>Il se connecte donc de façon sécurisée à un serveur VPN anonymisant, qui va à son tour se connecter au serveur Web. Si l'administrateur du serveur Web décide de regarder de plus près d'où vient la connexion, il ne verra que l'adresse IP du serveur VPN, et pas celle de Jérôme.</p>
+							<p>Le serveur VPN peut se trouver à l'étranger ou en dehors d'une zone "surveillée" (Chine par exemple).</p>
+						</aside>
+					</section>
+
+					<section data-background="{{ url_for('static', filename='images/anonymous.png') }}" data-background-size="500px">
+						<h1>Les VPN anonymisants</h1>
+						<h2>Pourquoi ?</h2>
+
+						<ul>
+							<li>Accéder à l'Internet depuis un réseau "douteux" (Au Mac Do, à la gare, etc.)</li>
+							<li>Masquer son identité et son origine sur l'Internet.</li>
+							<li>Échapper à des restrictions sur sa connexion Internet (filtrage, surveillance, quotas).</li>
+							<li>Effectuer des tests de connexion extérieure.</li>
+						</ul>
+
+						<aside class="notes">
+							<p>Permet la liberté d'expression sur l'Internet: plus de risques de représailles.</p>
+							<p>Permet d'accéder à du contenu restreint (séries US, résultats d'élections).</p>
+							<p>Masque son activité de façon plus fiable et plus complète: toutes les requêtes sont filtrées (y compris les requêtes DNS), pas seulement le contenu.</p>
+							<p>Permet également de tester comment se comporte un service depuis l'extérieur (petite entreprise avec une seule connexion Internet qui souhaite faire des tests de pénétration).</p>
+						</aside>
+					</section>
+
+					<section data-background="{{ url_for('static', filename='images/anonymous.png') }}" data-background-size="500px">
+						<h1>Les VPN anonymisants</h1>
+						<h2>Quels inconvénients ?</h2>
+
+						<ul>
+							<li>Nécessité d'un serveur externe, souvent à l'étranger.</li>
+							<li>Quelle confiance accorder à ce serveur ?</li>
+							<li>Le serveur est un SPOF: tout le service repose sur lui.</li>
+						</ul>
+
+						<aside class="notes">
+							<p>Cette architecture réseau repose sur le fait d'avoir accès à un serveur à l'étranger.</p>
+							<p>Ce serveur est-il de confiance ? Toujours ? Est-il sécurisé ? <strong>Risque de voir tout son trafic analysé si le serveur est compromis !</strong></p>
+							<p>Que se passe-t-il si le serveur tombe ?</p>
+						</aside>
+					</section>
 				</section>
 
-				<section data-background="{{ url_for('static', filename='images/anonymous.png') }}" data-background-size="500px">
-					<img src="{{ url_for('static', filename='images/anonymous-vpn.png') }}" alt="Anonymous VPN schematics" />
+				<section data-background="{{ url_for('static', filename='images/enterprise.png') }}" data-background-size="500px">
+					<section data-background="{{ url_for('static', filename='images/enterprise.png') }}" data-background-size="500px">
+						<h1>Les VPN d'entreprise</h1>
+						<p>Le but: <strong>permettre l'accès à des resources privées depuis n'importe quelle connexion à l'Internet</strong>.</p>
 
-					<aside class="notes">
-						<p>Prenons pour commencer le cas classique: nous avons ici une personne, que l'on nommera au hasard "Jérôme", qui possède une connexion à l'Internet tout à fait classique: un ordinateur portable, un routeur Wifi.</p>
-						<p>Jérôme est un peu paranoïaque, et ne souhaite pas que le gouvernement, ou même ses amis sachent ce à quoi il passe ses soirées sur l'Internet.</p>
-						<p>Il se connecte donc de façon sécurisée à un serveur VPN anonymisant, qui va à son tour se connecter au serveur Web. Si l'administrateur du serveur Web décide de regarder de plus près d'où vient la connexion, il ne verra que l'adresse IP du serveur VPN, et pas celle de Jérôme.</p>
-						<p>Le serveur VPN peut se trouver à l'étranger ou en dehors d'une zone "surveillée" (Chine par exemple).</p>
-					</aside>
+						<aside class="notes">
+							<p>Schéma VPN probablement le plus répandu, particulièrement dans les grandes entreprises.</p>
+						</aside>
+					</section>
+
+					<section data-background="{{ url_for('static', filename='images/enterprise.png') }}" data-background-size="500px">
+						<img src="{{ url_for('static', filename='images/enterprise-vpn.png') }}" alt="Enterprise VPN schematics" />
+
+						<aside class="notes">
+							<p>Maxime travaille pour une grande entreprise, au hasard, bancaire. Il doit être amené régulièrement à travailler de chez lui pour des tâches de surveillance et d'intervention sur différents services de la banque.</p>
+							<p>Les données sur lesquelles Maxime travaille sont confidentielles. Pour autant, lorsqu'il doit travailler toute la nuit durant, il préfère le faire de chez lui.</p>
+							<p>Le VPN mis en place par son entreprise lui permet de se connecter au réseau de son entreprise, de la même façon que si il était sur place, à son bureau.</p>
+							<p>Il a accès aux mêmes services internes, même à son imprimante, sans quitter son domicile.</p>
+						</aside>
+					</section>
+
+					<section data-background="{{ url_for('static', filename='images/enterprise.png') }}" data-background-size="500px">
+						<h1>Les VPN d'entreprise</h1>
+						<h2>Pourquoi ?</h2>
+
+						<ul>
+							<li>Évite aux collaborateurs de devoir se déplacer pour accéder aux resources de l'entreprise.</li>
+							<li>Permet une abstraction totale des périphériques intermédiaires: les concepteurs des services internes peuvent ne se préoccuper que des clients locaux.</li>
+							<li>Facilite l'administration réseau: une seule règle firewall.</li>
+							<li>Un niveau de sécurité supplémentaire.</li>
+							<li>Possibilité pour l'entreprise de fournir un service anonymisant.</li>
+						</ul>
+
+						<aside class="notes">
+							<p>Commodité.</p>
+							<p>Les services internes peuvent ne gérer que les clients du LAN: le VPN se charge de fournir l'abstraction.</p>
+							<p>Règles de firewall simplifiées: un seul point d'entrée.</p>
+							<p><strong>On peut toujours utiliser SSL au sein du tunnel VPN pour avoir une sécurité supplémentaire.</strong></p>
+						</aside>
+					</section>
+
+					<section data-background="{{ url_for('static', filename='images/enterprise.png') }}" data-background-size="500px">
+						<h1>Les VPN d'entreprise</h1>
+						<h2>Quels inconvénients ?</h2>
+
+						<ul>
+							<li>Moins d'isolation: que se passe-t-il si le réseau personnel est vérolé ?</li>
+							<li>Tout ou rien: si la connexion VPN ne peut pas s'établir, aucune connectivité.</li>
+						</ul>
+
+						<aside class="notes">
+							<p>En cas d'infection du réseau personnel, risque de contamination de l'entreprise.</p>
+							<p>Si la connexion VPN échoue, une connexion HTTPS aurait sans doute eu plus de chances de passer.</p>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="{{ url_for('static', filename='images/peer-to-peer.png') }}" data-background-size="500px">
+					<section data-background="{{ url_for('static', filename='images/peer-to-peer.png') }}" data-background-size="500px">
+						<h1>Les VPN pair-à-pair</h1>
+						<p>Le but: <strong>établir un espace de communication et de partage entre pairs</strong>.</p>
+
+						<aside class="notes">
+							<p>Créer un réseau privé dans lequel tous les participants sont égaux et peuvent échanger librement.</p>
+						</aside>
+					</section>
+
+					<section data-background="{{ url_for('static', filename='images/peer-to-peer.png') }}" data-background-size="500px">
+						<img src="{{ url_for('static', filename='images/peer-to-peer-vpn.png') }}" alt="Peer-to-peer VPN schematics" />
+
+						<aside class="notes">
+							<p>Nous avons ici 4 intervenants: Alice, Bob, Carole et Didier.</p>
+							<p>Bob et Didier font partie du même réseau local.</p>
+							<p>Alice, Bob et Carole ont établi un réseau VPN privé entre eux: ils sont chacun connectés chez les deux autres et se sont attribués des adresses IP unique au sein du réseau privé.</p>
+							<p>Didier n'a aucune possibilité de voir ce qui se passe dans le réseau privé car il n'en fait pas partie.</p>
+						</aside>
+					</section>
+
+					<section data-background="{{ url_for('static', filename='images/peer-to-peer.png') }}" data-background-size="500px">
+						<h1>Les VPN pair-à-pair</h1>
+						<h2>Pourquoi ?</h2>
+
+						<ul>
+							<li>Égalité et inocuité.</li>
+							<li>Partager en tout confidentialité des documents, des films, des musiques<sup>*</sup>.</li>
+							<li>Permet de jouer à de vieux jeux ne fonctionnant qu'en réseau local au travers de l'internet.</li>
+							<li>Pour de meilleures performances.</li>
+						</ul>
+
+						<p><small>[*]: Libres de droit, évidemment.</small></p>
+
+						<aside class="notes">
+							<p>Inocuité: qui ne peut pas nuir.</p>
+							<p>Si deux membres veulent communiquer, personne ne peut les empêcher de le faire, y compris un autre membre.</p>
+							<p>Performances: les données transitent directement d'un hôte à l'autre: pas de relai.</p>
+						</aside>
+					</section>
+
+					<section data-background="{{ url_for('static', filename='images/peer-to-peer.png') }}" data-background-size="500px">
+						<h1>Les VPN pair-à-pair</h1>
+						<h2>Quels inconvénients ?</h2>
+
+						<ul>
+							<li>Difficile à administrer.</li>
+							<li>Qui fait partie du réseau ?</li>
+							<li>Peu d'implémentations existantes !</li>
+						</ul>
+
+						<aside class="notes">
+							<p>Si tout le monde est égal, qui décide de l'allocation des adresses IP ?</p>
+							<p>Pas d'autorité: comment déterminer qui fait partie du réseau et qui n'en fait pas partie ?</p>
+							<p>Peu de solutions VPN supportent ce schéma.</p>
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Aspects réseaux</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Aspects de sécurité</h1>
+					</section>
 				</section>
 			</div>
 

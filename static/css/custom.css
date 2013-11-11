@@ -21,8 +21,13 @@
 
 /* Specific parahraph styles */
 
-.reveal section h1 {
+.reveal section h1,
+.reveal section h2 {
 	margin-bottom: 0.5em;
+}
+
+.reveal section h2 {
+	color: #e7ad52;
 }
 
 .reveal section h1:first-letter {
@@ -47,10 +52,15 @@
 
 /* Tweaks */
 
-.reveal section li > ul {
+.reveal section ul {
 	margin-bottom: 1em;
 }
 
 .reveal section q {
 	quotes: inherit;
+}
+
+.reveal section sup {
+	font-size: 80%;
+	color: #e7ad52;
 }
