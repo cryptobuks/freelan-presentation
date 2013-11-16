@@ -517,6 +517,137 @@
 					</section>
 
 				</section>
+
+				<section>
+					<h1><img class="logo" src="{{ url_for('static', filename='images/freelan.png') }}" alt="freelan logo" /></h1>
+
+					<aside class="notes">
+						<p>Maintenant qu'on a vu en détail le principe des réseaux VPN, on va pouvoir parler de freelan.</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Origines &amp; motivations</h1>
+					<p>
+						<ul>
+							<li>A débuté comme un projet étudiant.</li>
+							<li>Première implémentation très... amusante.</li>
+							<li>Une seule alternative sérieuse à l'époque.</li>
+						</ul>
+					</p>
+
+					<aside class="notes">
+						<p>Suite à un stage chez IP-MEDIA.</p>
+						<p>Passion pour les VPNs.</p>
+						<p>Première implémentation pas très stable.</p>
+						<p>Seule alternative sérieuse: Hamachi.</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>La concurrence</h1>
+					<p>
+						<ul>
+							<li>Embarras du choix: PeerVPN, NeoRouter, OpenVPN, Wippien, badvpn, &hellip;</li>
+							<li>Aucun qui soit à la fois: peer-to-peer, IPv4/IPv6, multi-platforme, open-source.</li>
+							<li>Pas mal de résultats en cherchant <q><code>peer to peer vpn</code></q> sur Google&hellip;</li>
+							<li>&hellip; mais freelan est le premier dans la liste ! :)</li>
+						</ul>
+					</p>
+
+					<aside class="notes">
+						<p>Minute "auto-promotion".</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Avantages d'un logiciel libre</h1>
+					<p>
+						<ul>
+							<li>Vous pouvez réutiliser/intégrer le logiciel dans votre solution.</li>
+							<li>Vous pouvez corriger vous-même en cas de problème.</li>
+							<li>Vous savez exactement ce qui se passe.</li>
+							<li>Gratuit. Pour toujours.</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h1>Le protocole <q>FSCP</q></h1>
+
+						<p>
+							<ul>
+								<li>Signifie: <q>Freelan Secure Channel Protocol</q>.</li>
+								<li>Protocole en &oelig;uvre au c&oelig;ur de freelan.</li>
+								<li>Fournit plusieurs canaux chiffrés à usage applicatif.</li>
+								<li>Pensé longuement avant l'implémentation.</li>
+								<li>La sécurité en premier, puis les performances.</li>
+								<li>Rédigé comme une RFC.</li>
+							</ul>
+						</p>
+					</section>
+
+					<section>
+						<h3>Aperçu des spécifications (RFC)</h3>
+
+						<img src="{{ url_for('static', filename='images/rfc.png') }}" alt="Aperçu de la RFC" />
+
+						<aside class="notes">
+							<p>Rédigé comme une RFC.</p>
+							<p>Permet aux développeurs d'implémenter le protocole dans le language de leur choix.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>Détails sur le protocole</h2>
+						<p>
+							<ul>
+								<li>Utilise GCM (Galois Counter Mode) pour le chiffrement de session.</li>
+								<li>Différentes étapes: présentation, négociation, session&hellip;</li>
+								<li>Protégé contre les attaques par rejeu.</li>
+								<li>Protégé contre les attaques <q>Man-in-the-Middle</q>.</li>
+							</ul>
+						</p>
+
+						<aside class="notes">
+							<p>Mode d'opération basé sur la théorie de Galois.</p>
+							<p>Évariste Galois, 1811 - 1832. Mort à 21 ans d'un duel.</p>
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h1>Démonstration</h1>
+					<h2>Vous n'alliez quand même pas me croire sur parole, si ?</h2>
+				</section>
+
+				<section>
+					<h1>L'avenir...</h1>
+					<p>
+						<ul>
+							<li>Créer une interface graphique.</li>
+							<li>Ajouter le support des interfaces TUN.</li>
+							<li>Portage sur Android, iOS, Raspberry Pi, &hellip;</li>
+							<li>Supporter TCP comme couche de transport pour le tunnel.</li>
+							<li>Supporter un mode simplifié avec clé partagée.</li>
+							<li>Création d'un service en ligne.</li>
+							<li>Toutes les idées sont les bienvenues !</li>
+							<li>Un peu d'aide ne ferait pas de mal :)</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>C'est fini !</h2>
+					<h3>Des questions ?</h3>
+
+					<img src="{{ url_for('static', filename='images/freelan-qrcode.png') }}" alt="www.freelan.org" />
+
+					<aside class="notes">
+						<p>Merci de votre attention !</p>
+					</aside>
+				</section>
 			</div>
 
 		</div>
