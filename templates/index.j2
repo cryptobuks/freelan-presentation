@@ -70,7 +70,7 @@
 				</section>
 
 				<section>
-					<h1>Plan de la soirée</h1>
+					<h1>Sommaire</h1>
 					<ol>
 						<li>Les réseaux <q>VPN</q>
 							<ul>
@@ -317,13 +317,205 @@
 				<section>
 					<section>
 						<h1>Aspects réseaux</h1>
+
+						<aside class="notes">
+							<p>On va aller en un peu plus en détail sur ce qui se passe au niveau réseau.</p>
+						</aside>
 					</section>
+
+					<section>
+						<img src="{{ url_for('static', filename='images/tcpip.png') }}" alt="Schéma de réseau TCP/IP" />
+
+						<aside class="notes">
+							<p>Lorsque l'on envoie un message au travers de l'Internet, celui-ci est encapsulé dans plusieurs couches pour assurer son transport.</p>
+							<p>Chaque couche dépend de la couche sur laquelle elle repose, qui fournit un <strong>contexte</strong>.</p>
+						</aside>
+					</section>
+
+					<section>
+						<img src="{{ url_for('static', filename='images/tcpip-exemple.png') }}" alt="Schéma de réseau TCP/IP - Exemple" />
+
+						<aside class="notes">
+							<p>Schéma très simplifié.</p>
+							<p>Imaginons que l'on souhaite envoyer des données. Il faut d'abord préciser le numéro de port, puis l'adresse puis <strong>envoyer le tout <em>physiquement</em> sur le bon réseau</strong>.</p>
+							<p>On appelle ça une <strong>trame</strong>.</p>
+							<p>Analogie du courrier : les données sont une lettre, la couche transport est une enveloppe, etc.</p>
+						</aside>
+					</section>
+
+					<section>
+						<img src="{{ url_for('static', filename='images/vpn.png') }}" alt="Principe du VPN" />
+
+						<aside class="notes">
+							<p>Le principe du VPN est en fait tout simple: lorsque l'on envoie un message dans le tunnel, on suit exactement la même mécanique sauf qu'au lieu d'envoyer la trame résultante sur le réseau, on l'encapsule dans une autre trame (comme des poupées russes).</p>
+							<p>Selon le type de VPN, l'encapsulation se fait éventuellement à différents niveaux.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>Comment assurer l'abstraction ?</h2>
+						<p>
+							<ul>
+								<li>Nécessité d'avoir une interface réseau virtuelle.</li>
+								<li>L'interface est vue par le système comme une véritable interface réseau.</li>
+								<li>Les programmes n'ont pas conscience et aucun moyen de connaître la vraie nature de l'interface.</li>
+							</ul>
+						</p>
+
+						<aside class="notes">
+							<p>On voit donc qu'il faut fournir un moyen au système d'envoyer des trames dans le tunnel: on a besoin pour ça d'une interface virtuelle.</p>
+							<p>L'interface est quasiment identique à une vraie: <strong>statut du lien, vitesse, etc</strong>.</p>
+							<p>Les programmes ne savent rien.</p>
+						</aside>
+					</section>
+
 				</section>
 
 				<section>
 					<section>
 						<h1>Aspects de sécurité</h1>
+
+						<aside class="notes">
+							<p>On a vu l'encapsulation... mais comment sécuriser ?</p>
+							<p>Les données encapsulées ne sont pas vraiment envoyées telles quelles.</p>
+						</aside>
 					</section>
+
+					<section>
+						<img src="{{ url_for('static', filename='images/vpn-secure.png') }}" alt="Principe du VPN sécurisé" />
+
+						<aside class="notes">
+							<p>On voit ici que les données ne sont en vrai pas envoyées directement: elles sont au préalable chiffrées.</p>
+							<p><strong>Petite parenthèse</strong>: "Chiffrées" = "Cryptées" dans le jargon populaire.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>Les algorithmes de chiffrement symétriques</h2>
+					</section>
+
+					<section>
+						<h3>Chiffrement symétrique</h3>
+
+						<img src="{{ url_for('static', filename='images/symmetric-cipher.png') }}" alt="Chiffrement symétrique" />
+
+						<aside class="notes">
+							<p>Schéma de fonctionnement d'un algorithme de chiffrement symétrique.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>Choix d'un bon algorithme</h2>
+						<p>
+							<ul>
+								<li>Avoir une complexité en adéquation avec l'usage qui en est fait.</li>
+								<li>Avoir un ensemble de clés possibles libre de toutes contraintes.</li>
+								<li>Être simple de principe.</li>
+								<li>Être résistant aux erreurs.</li>
+								<li>Fournir un texte chiffré de même taille que le texte original.</li>
+							</ul>
+						</p>
+
+						<aside class="notes">
+							<p>L'algorithme de chiffrement doit être adéquat: pas la peine d'utiliser un algorithme de dingue pour protéger votre liste de courses.</p>
+							<p>L'espace de clé doit être le plus large possible pour éviter de restreindre l'espace de recherche.</p>
+							<p>L'implémentation doit être simple: moins d'erreurs, plus facile à analyser.</p>
+							<p>Une erreur dans le chiffrement ne doit pas compromettre toute la communication.</p>
+							<p>Un texte chiffré plus grand que le texte clair est plus facile à cryptanalyser, prend plus de place, plus de temps à transmettre.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>Choix de la clé</h2>
+						<p>
+							<ul>
+								<li>La clé doit être impossible à deviner.</li>
+								<li>Génération <strong>aléatoire</strong>.</li>
+								<li>Comment transmettre cette clé de façon sécurisée ?</li>
+							</ul>
+						</p>
+
+						<aside class="notes">
+							<p>Une bonne clé doit être impossible à deviner.</p>
+							<p>Générer une clé aléatoire permet d'obtenir une très bonne clé.</p>
+							<p>La transmission est un point critique: utilisation d'un algorithme de chiffrement asymétrique.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>Les algorithmes de chiffrement asymétriques</h2>
+
+						<p>
+							<ul>
+								<li>Basé sur un système de paires de clés (publique/privée).</li>
+								<li>Système utilisé par les certificats (X.509).</li>
+								<li>Permet le chiffrement et la signature.</li>
+							</ul>
+						</p>
+
+						<aside class="notes">
+							<p>Fonctionne avec un système de paire de clés (privée, publique).</p>
+							<p>Système utilisé par les certificats (X.509).</p>
+							<p>Permet deux choses: chiffrement et la signature (<strong>confidentialité et authenticité</strong>).</p>
+						</aside>
+					</section>
+
+					<section>
+						<h3>Chiffrement asymétrique</h3>
+
+						<img src="{{ url_for('static', filename='images/asymmetric-cipher.png') }}" alt="Chiffrement asymétrique" />
+
+						<aside class="notes">
+							<p>Schéma de fonctionnement d'un algorithme de chiffrement asymétrique.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h3>Signature</h3>
+
+						<img src="{{ url_for('static', filename='images/asymmetric-signature.png') }}" alt="Signature asymétrique" />
+
+						<aside class="notes">
+							<p>Schéma de fonctionnement d'un algorithme de signature asymétrique.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>Utilisation dans le cas d'un VPN</h2>
+						<p>
+							<ul>
+								<li>Envoi de la clé partagée chiffrée asymétriquement.</li>
+								<li>Signature du cryptogramme.</li>
+								<li>Seul le destinataire peut lire la clé partagée et a la garantie de sa provenance.</li>
+							</ul>
+						</p>
+
+						<aside class="notes">
+							<p>La clé partagée, après génération est chiffrée avec la clé publique du destinataire.</p>
+							<p>Le résultat de ce chiffrement est signé avec la clé privée locale.</p>
+							<p>Le tout est envoyé: authenticité et confidentialité.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>Les limitations</h2>
+						<h3><q>Pourquoi utiliser un algorithme symétrique si un asymétrique fait tout ?</q></h3>
+						<p>
+							<ul>
+								<li>Le format du texte clair n'est pas arbitraire.</li>
+								<li>Performances.</li>
+								<li>Opération critique.</li>
+							</ul>
+						</p>
+
+						<aside class="notes">
+							<p>Si un algorithme asymétrique suffit à garantir la confidentialité et l'authenticité, pourquoi utiliser un algorithme symétrique ?</p>
+							<p>Le format du texte clair que l'on peut chiffrer avec un algorithme asymétrique n'est pas arbitraire: il doit avoir un caractère aléatoire au risque de révéler des informations sur la clé privée. De plus la taille du texte clair est très limitée (1024 bits RSA => 117 octets).</p>
+							<p>Une opération de chiffrement/déchiffrement asymétrique est longue et couteuse.</p>
+							<p>L'opération est très critique: on préfère utiliser une clé symétrique "jetable" que d'utiliser constamment la clé privée. En cas de corruption d'une des clés de session, on peut simplement établir une nouvelle clé de session.</p>
+						</aside>
+					</section>
+
 				</section>
 			</div>
 
