@@ -11,7 +11,7 @@ echo "Generating private keys..."
 openssl genrsa -out ca.key 2048
 openssl genrsa -out alice.key 2048
 openssl genrsa -out bob.key 2048
-openssl genrsa -out chris.key 2048
+openssl genrsa -out carole.key 2048
 
 # Generate CA certificate
 echo "Generating CA certificate..."
@@ -23,11 +23,11 @@ echo "Generating certificate requests..."
 
 openssl req -new -key alice.key -subj "/C=FR/ST=Alsace/CN=alice.freelan.org" -out alice.csr
 openssl req -new -key bob.key -subj "/C=FR/ST=Alsace/CN=bob.freelan.org" -out bob.csr
-openssl req -new -key chris.key -subj "/C=FR/ST=Alsace/CN=chris.freelan.org" -out chris.csr
+openssl req -new -key carole.key -subj "/C=FR/ST=Alsace/CN=carole.freelan.org" -out carole.csr
 
 # Sign CSRs
 echo "Signing certificate requests..."
 
 openssl ca -in alice.csr -out alice.crt -config ca/ca.cnf
 openssl ca -in bob.csr -out bob.crt -config ca/ca.cnf
-openssl ca -in chris.csr -out chris.crt -config ca/ca.cnf
+openssl ca -in carole.csr -out carole.crt -config ca/ca.cnf
