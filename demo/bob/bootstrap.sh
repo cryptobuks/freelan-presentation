@@ -1,8 +1,14 @@
 #!/bin/bash
 
+# Change the hostname
+hostname bob
+echo "bob" > /etc/hostname
+sed -i 's/debian-7.2.0/bob/g' /etc/hosts
+
 # Upgrade the guest
 apt-get update
 apt-get -y upgrade
+apt-get -y install vim
 
 # Add the freelan repository
 grep "freelan" || echo "deb http://debian.freelan.org/ wheezy-backports main" | tee -a /etc/apt/sources.list
