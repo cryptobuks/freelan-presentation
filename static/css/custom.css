@@ -29,11 +29,11 @@
 }
 
 .reveal section h2 {
-	color: #e7ad52;
+	color: #e67127;
 }
 
 .reveal section h1:first-letter {
-	color: #e7ad52;
+	color: #e67127;
 }
 
 .reveal section .discrete {
@@ -43,7 +43,7 @@
 /* Definition lists */
 
 .reveal section dl dt {
-	color: #e7ad52;
+	color: #e67127;
 	font-weight: bold;
 	margin-bottom: 0.5em;
 }
@@ -64,5 +64,5 @@
 
 .reveal section sup {
 	font-size: 80%;
-	color: #e7ad52;
+	color: #e67127;
 }
